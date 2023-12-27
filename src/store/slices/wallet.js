@@ -19,7 +19,8 @@ const initialState = {
     { id: 5, value: "Ownership History", active: false },
   ],
 
-  signedMessage:null
+  signedMessage:localStorage.getItem("wallet_sign")
+
 };
 
 const walletSlice = createSlice({

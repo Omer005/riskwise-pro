@@ -26,6 +26,8 @@ const TopNavbar = () => {
   const location = useLocation();
   const [menu, setMenu] = useState("");
 
+
+
   useEffect(() => {
     var current = window.location.pathname.substring(
       window.location.pathname.lastIndexOf("/") + 1
@@ -37,7 +39,7 @@ const TopNavbar = () => {
     )
   ]);
   const dispatch = useDispatch();
-  const { showwalletconnectmodaldesk } = useSelector((state) => state.wallet);
+  const { showwalletconnectmodaldesk ,signedMessage} = useSelector((state) => state.wallet);
   const handleShowModal = () => {
     dispatch(showWalletConnectModalDesk());
   };
@@ -69,7 +71,7 @@ const TopNavbar = () => {
             onClick={handleShowModal}
           >
             <MonetizationOnIcon />
-            <p className="text-xs"> connect</p>
+            <p className="text-xs">{signedMessage?"Connected":"connect"} </p>
           </div>
           <NavbarAccountLarge menu={menu} />
         </div>

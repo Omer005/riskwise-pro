@@ -73,15 +73,16 @@ const WalletConnectModalDesk = () => {
   }}
   onConnectError={function noRefCheck(){}}
   onDisconnect={function noRefCheck(){
-    // localStorage.removeItem("wallet_sign")
+    localStorage.removeItem("wallet_sign")
     dispatch(walletSignMessage(null));
 
   }}
 
-  
+
   onSignMessage={function noRefCheck(e){
-    // localStorage.setItem("wallet_sign",e)
+    localStorage.setItem("wallet_sign",e)
     dispatch(walletSignMessage(e));
+    alert("You are Loged in ")
 
   }}
   onStakeAddressClick={function noRefCheck(){}}
