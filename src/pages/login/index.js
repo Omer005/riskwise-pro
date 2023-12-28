@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { Icon } from "../../common/IMG/Images";
 import * as SVG from "../../common/Icons";
 import { REGISTER } from "../../routes/routes";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { toastNotification } from "../../components/ToastNTF";
+import { settoken } from "../../store/slices/auth";
 
 const Login = () => {
   const [visibility, setVisibility] = useState(true);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setloading] = useState(false);
   const initialValues = {
     email: "",
     password: "",
@@ -22,6 +28,30 @@ const Login = () => {
 
   const handleLogin = (formValue) => {
     // const { email, password } = formValue;
+    setloading(true);
+    const { name, email, password } = formValue;
+    console.log(name);
+    axios
+      .post("https://riskwise-pro-backend.vercel.app/api/users/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        setloading(false);
+
+        dispatch(settoken(response?.data?.token));
+        localStorage.setItem("token", response?.data?.token);
+
+        toastNotification(response?.data?.message, "success", 5000);
+        navigate("/");
+      })
+      .catch((error) => {
+        setloading(false);
+
+        // console.log(error/?.response.data.error, "ppppp");
+
+        toastNotification(error?.response?.data?.error, "error", 5000);
+      });
   };
 
   const handleViewPassword = () => {
@@ -102,7 +132,7 @@ const Login = () => {
                       type="submit"
                       className="w-full h-[34px] rounded-lg bg-gradient-to-r from-yellow-200 to-yellow-400 text-black text-sm"
                     >
-                      Sign in
+                     {loading?"LOADING..":"Sign in"} 
                     </button>
                   </div>
 

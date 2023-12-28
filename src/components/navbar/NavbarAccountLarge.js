@@ -4,8 +4,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useSelector } from "react-redux";
 const NavbarAccountLarge = (props) => {
   const { menu } = props;
-  const { signedMessage } = useSelector((state) => state.wallet);
-console.log(signedMessage,'NQV-----');
+  const { token } = useSelector((state) => state.auth);
+console.log(token,'NQV-----');
   return (
     <>
       <div
@@ -14,17 +14,23 @@ console.log(signedMessage,'NQV-----');
             ? "bg-gradient-to-r from-yellow-200 to-yellow-400"
             : ""
           }`} >
-            {signedMessage?
-            <>
+            {token?
+            <div style={{cursor:"pointer"}}>
              <div className={`flex justify-center items-center ${menu === "accounthome" ? "" : "text-white"} `}>
             <AccountCircleIcon fontSize="small" />
           </div>
           <div
+          onClick={()=>{
+            localStorage.removeItem('token')
+            localStorage.removeItem('wallet_sign')
+            window.location.reload()
+
+          }}
             className={`transition-all duration-300
                  ${menu === "accounthome" ? "text-black" : "text-white"}`} >
-            <span className={`font-normal ml-2 text-sm hover:opacity-80`}>{signedMessage?.substring(0,8)+".."}</span>
+            <span className={`font-normal ml-2 text-sm hover:opacity-80`}>logout</span>
           </div>
-            </>
+            </div>
           :
           <Link to="/account" className="flex cursor-pointer">
           <div className={`flex justify-center items-center ${menu === "accounthome" ? "" : "text-white"} `}>

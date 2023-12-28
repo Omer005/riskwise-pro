@@ -25,6 +25,7 @@ const TopNavbar = () => {
   const navbar = document.getElementById("Navbar");
   const location = useLocation();
   const [menu, setMenu] = useState("");
+  const { token } = useSelector((state) => state.auth);
 
 
 
@@ -53,6 +54,8 @@ const TopNavbar = () => {
       {/* Navbar Body */}
       <div className="flex justify-between items-ceter w-full px-4 relative">
         <div className="flex xl:gap-4 gap-1">
+        {token &&
+        <>
           <NavarHomeLarge menu={menu} />
           <NavbarChartsLarge menu={menu} />
           <NavbarPortfolioLarge menu={menu} />
@@ -63,6 +66,8 @@ const TopNavbar = () => {
           <NavbarProfilerLarge menu={menu} />
           <NavbarHotProfilerLarge menu={menu} />
           <NavbarMoneyFlowLarge menu={menu} />
+          </>
+        }
         </div>
         <div className="flex items-center justify-end gap-6">
           <MobileHeaderSearch />

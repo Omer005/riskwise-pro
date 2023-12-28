@@ -6,6 +6,7 @@ import {
   walletSignMessage,
 } from "../../../store/slices/wallet";
 import { ConnectWalletButton } from "@cardano-foundation/cardano-connect-with-wallet";
+import { toastNotification } from "../../ToastNTF";
 
 const WalletConnectModalDesk = () => {
   const dispatch = useDispatch();
@@ -82,7 +83,9 @@ const WalletConnectModalDesk = () => {
   onSignMessage={function noRefCheck(e){
     localStorage.setItem("wallet_sign",e)
     dispatch(walletSignMessage(e));
-    alert("You are Loged in ")
+    toastNotification("Connected to wallet", "success", 5000);
+
+    // alert("")
 
   }}
   onStakeAddressClick={function noRefCheck(){}}

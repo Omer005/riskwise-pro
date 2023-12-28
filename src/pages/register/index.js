@@ -6,8 +6,16 @@ import * as Yup from "yup";
 import { Icon } from "../../common/IMG/Images";
 import * as SVG from "../../common/Icons";
 import { LOGIN } from "../../routes/routes";
+import axios from "axios";
+import { toastNotification } from "../../components/ToastNTF";
+import { settoken } from "../../store/slices/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setloading] = useState(false);
   const [visibility, setVisibility] = useState(true);
   const [visibility2, setVisibility2] = useState(true);
   const [isAgree, setIsAgree] = useState(false);
@@ -46,7 +54,31 @@ const SignUp = () => {
   });
 
   const handleRegister = (formValue) => {
-    // const { username, email, password } = formValue;
+    setloading(true);
+    const { name, email, password } = formValue;
+    console.log(name);
+    axios
+      .post("https://riskwise-pro-backend.vercel.app/api/users/register", {
+        username: name,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        setloading(false);
+
+        dispatch(settoken(response?.data?.token));
+        localStorage.setItem("token", response?.data?.token);
+
+        toastNotification(response?.data?.message, "success", 5000);
+        navigate("/");
+      })
+      .catch((error) => {
+        setloading(false);
+
+        // console.log(error.response.data.error, "ppppp");
+
+        toastNotification(error?.response?.data?.error, "error", 5000);
+      });
   };
 
   const handleViewPassword = () => {
@@ -198,7 +230,7 @@ const SignUp = () => {
                       isAgree ? "bg-opacity-100" : "bg-opacity-60"
                     }`}
                   >
-                    Create Account
+                    {loading ? "Loading..." : "Create Account"}
                   </button>
                 </div>
 
