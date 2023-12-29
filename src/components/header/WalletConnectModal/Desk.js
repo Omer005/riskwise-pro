@@ -65,7 +65,7 @@ const WalletConnectModalDesk = () => {
             // onClick={handleShowModalMobile}
           >
             <ConnectWalletButton
-            sty
+            
   label="Cardano Wallet"
   message="Please sign Augusta Ada King, Countess of Lovelace"
 
@@ -76,6 +76,7 @@ const WalletConnectModalDesk = () => {
   onDisconnect={function noRefCheck(){
     localStorage.removeItem("wallet_sign")
     dispatch(walletSignMessage(null));
+    // handleShowModalDesk()
 
   }}
 
@@ -84,11 +85,19 @@ const WalletConnectModalDesk = () => {
     localStorage.setItem("wallet_sign",e)
     dispatch(walletSignMessage(e));
     toastNotification("Connected to wallet", "success", 5000);
+    handleShowModalDesk()
 
     // alert("")
 
   }}
-  onStakeAddressClick={function noRefCheck(){}}
+  onStakeAddressClick={function noRefCheck(e){
+    console.log(e);
+    navigator.clipboard.writeText(e)
+    toastNotification("wallet Address coppied successfully", "success", 5000);
+    handleShowModalDesk()
+
+
+  }}
 />
           </div>
           <div

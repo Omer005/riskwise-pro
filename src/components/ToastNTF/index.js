@@ -4,6 +4,7 @@ export const toastNotification = (msg, type, duration) => {
   return type === "success"
     ? toast.success(msg, {
         position: "bottom-right",
+        zindex:"99",
         autoClose: duration,
         hideProgressBar: false,
         closeOnClick: true,
@@ -12,6 +13,7 @@ export const toastNotification = (msg, type, duration) => {
         progress: undefined,
         theme: "colored",
         icon:true,
+        
       })
     : toast.error(msg, {
         position: "bottom-right",

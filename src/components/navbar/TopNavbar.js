@@ -54,7 +54,7 @@ const TopNavbar = () => {
       {/* Navbar Body */}
       <div className="flex justify-between items-ceter w-full px-4 relative">
         <div className="flex xl:gap-4 gap-1">
-        {token &&
+        {/* {token && */}
         <>
           <NavarHomeLarge menu={menu} />
           <NavbarChartsLarge menu={menu} />
@@ -67,7 +67,7 @@ const TopNavbar = () => {
           <NavbarHotProfilerLarge menu={menu} />
           <NavbarMoneyFlowLarge menu={menu} />
           </>
-        }
+        {/* } */}
         </div>
         <div className="flex items-center justify-end gap-6">
           <MobileHeaderSearch />

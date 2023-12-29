@@ -75,3 +75,9 @@ input[data-autocompleted] {
   from { -webkit-transform: rotate(0deg); }
   to { -webkit-transform: rotate(360deg); }
 }
+
+
+.Toastify__toast-body  {
+  
+  z-index: 9999 !important;
+}

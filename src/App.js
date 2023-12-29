@@ -11,12 +11,12 @@ function App() {
   const { token } = useSelector((state) => state.auth);
 const navigate =useNavigate()
   useEffect(()=>{
-if(token){
-  navigate("/")
-}else{
-  navigate("/login")
+// if(token){
+//   navigate("/")
+// }else{
+//   navigate("/login")
 
-}
+// }
   },[])
   return (
     <SimpleBarReact className="h-screen simplebar-scrollbar">
