@@ -23,6 +23,23 @@ input[data-autocompleted] {
   background-color: transparent !important;
   border-radius: 15px;
 }
+.jfJzns {
+  padding: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none !important;
+  /* color: #0538AF; */
+  color: #fff !important;
+  background-color: transparent !important;
+  border-radius: 15px;
+}
 .App {
   text-align: center;
 }
