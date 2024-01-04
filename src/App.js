@@ -16,10 +16,11 @@ function App() {
 const navigate =useNavigate()
   useEffect(()=>{
     const defaultClient = Cryptoapis.ApiClient.instance;
-    const ApiKey = defaultClient.authentications['ApiKey'];
+    // const ApiKey = defaultClient.authentications['ApiKey'];
+    const ApiKey = defaultClient.authentications['3665d6ca6ba2e40ffc4783caf977e2bd60e24da5'];
     ApiKey.apiKey = '3665d6ca6ba2e40ffc4783caf977e2bd60e24da5';
     var api = new Cryptoapis.AssetsApi()
-var assetId = "d1d9da9b9ce1c7602ffa0372c0a6117e84454e4d528ce93fb1ab85fb82d8b787"; // {String} Defines the unique ID of the specific asset.
+var assetId = "5b1ea92e584bf50020130612"; // {String} Defines the unique ID of the specific asset.
 var opts = {
   'context': "yourExampleString" // {String} In batch situations the user can use the context to correlate responses with requests. This property is present regardless of whether the response was successful or returned as an error. `context` is specified by the user.
 };
