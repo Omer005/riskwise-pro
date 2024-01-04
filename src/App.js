@@ -16,8 +16,8 @@ function App() {
 const navigate =useNavigate()
   useEffect(()=>{
     const defaultClient = Cryptoapis.ApiClient.instance;
-    // const ApiKey = defaultClient.authentications['ApiKey'];
-    const ApiKey = defaultClient.authentications['3665d6ca6ba2e40ffc4783caf977e2bd60e24da5'];
+    const ApiKey = defaultClient.authentications['ApiKey'];
+    // const ApiKey = defaultClient.authentications['3665d6ca6ba2e40ffc4783caf977e2bd60e24da5'];
     ApiKey.apiKey = '3665d6ca6ba2e40ffc4783caf977e2bd60e24da5';
     var api = new Cryptoapis.AssetsApi()
 var assetId = "5b1ea92e584bf50020130612"; // {String} Defines the unique ID of the specific asset.
